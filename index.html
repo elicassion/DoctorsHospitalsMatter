@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="echarts.js" type="text/javascript"></script>
+    <title>Doctors Matter</title>
+    <style>
+        .number{
+            font-weight: bold;
+            font-size: 3em;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span>人口：1,000,000; </span>
+        <span>初始感染人数：10; </span>
+        <span>潜伏期：5; </span>
+        <span>治愈需要天数：12; </span>
+        <span>治愈需要医护人员工时： 2/天; </span>
+        <span>医护人员8小时外工作效率每小时下降率：20%; </span>
+    </div>
+    <div>
+        <span>医护人员每天工作时长：</span><span id="value-input-work-hour">8</span><input type="range" min="8" max="24" step="1" id="input-work-hour" class="variable-input" onchange="update_input_variable(this)"/>
+        <span>医疗物资供给系数：</span><span id="value-input-equipment-supply">10000</span><input type="range" min="0" max="20000" step="1000" id="input-equipment-supply" class="variable-input" onchange="update_input_variable(this)"/>
+        <span>初始医护人员数：</span><span id="value-input-doctors">2000</span><input type="range" min="250" max="5000" step="50" id="input-doctors" class="variable-input" onchange="update_input_variable(this)"/>
+        <span>拥有病床数：</span><span id="value-input-beds">4000</span><input type="range" min="500" max="10000" step="100" id="input-beds" class="variable-input" onchange="update_input_variable(this)"/>
+        <span>初始物资储备：</span><span id="value-input-equipment-store">30000</span><input type="range" min="0" max="60000" step="5000" id="input-equipment-store" class="variable-input" onchange="update_input_variable(this)"/>
+    </div>
+    <div>
+        <button onclick="start_sim()">开始模拟</button>
+        <button onclick="stop_sim()">停止模拟</button>
+    </div>
+    <div id="infected-healed-chart" style="width: 1200px;height:300px; float: left"></div>
+    <div id="number-display">
+        <div><span>累计感染人数：</span><span id="infected-number" class="number" style="color: #ff7043">10</span></div>
+        <div><span>累计治愈人数：</span><span id="healed-number" class="number" style="color: #66bb6a">0</span></div>
+        <div><span>累计死亡人数：</span><span id="death-number" class="number" style="color: #111111">0</span></div>
+    </div>
+    <div id="bed-equipment-chart" style="clear: left; width: 1200px;height:300px;"></div>
+    <div id="doctor-chart" style="width: 50px;height:50px;"></div>
+</body>
+<script src="main.js" type="text/javascript"></script>
+</html>
